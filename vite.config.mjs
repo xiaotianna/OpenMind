@@ -2,7 +2,13 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import electron from 'vite-plugin-electron'
 import renderer from 'vite-plugin-electron-renderer'
-import { resolve } from 'path'
+import { resolve, dirname } from 'path'
+import { fileURLToPath } from 'url'
+import { cwd } from 'process'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
+const projectRoot = cwd()
 
 export default defineConfig({
   plugins: [
@@ -16,6 +22,7 @@ export default defineConfig({
         vite: {
           build: {
             outDir: 'dist-electron/main',
+            minify: false,
             rollupOptions: {
               external: ['electron']
             }
@@ -29,7 +36,11 @@ export default defineConfig({
         },
         vite: {
           build: {
-            outDir: 'dist-electron/preload'
+            outDir: 'dist-electron/preload',
+            minify: false,
+            rollupOptions: {
+              external: ['electron']
+            }
           }
         }
       }
@@ -38,7 +49,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'src')
+      '@': resolve(projectRoot, 'src')
     }
   },
   build: {

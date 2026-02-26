@@ -1,83 +1,131 @@
-import { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import './Sidebar.css'
+import { useState } from "react"
+import {
+  PenSquare,
+  Clock,
+  Puzzle,
+  FolderOpen,
+  ChevronDown,
+  ChevronRight,
+  Settings,
+  ListFilter,
+  FolderInput,
+} from "lucide-react"
+import { DragHandle } from "@/components/drag-handle"
 
-interface ChatItem {
+interface Thread {
   id: string
   title: string
   time: string
 }
 
-function Sidebar() {
-  const location = useLocation()
-  const [chats, setChats] = useState<ChatItem[]>([
-    { id: '1', title: '关于React的面试题', time: '今天 10:30' },
-    { id: '2', title: '帮我写一个排序算法', time: '昨天 15:20' },
-    { id: '3', title: '解释一下什么是闭包', time: '2月25日' },
-  ])
+interface ThreadGroup {
+  id: string
+  name: string
+  threads: Thread[]
+}
 
-  const handleNewChat = () => {
-    const newChat: ChatItem = {
-      id: Date.now().toString(),
-      title: '新对话',
-      time: '现在'
-    }
-    setChats([newChat, ...chats])
-  }
+const threadGroups: ThreadGroup[] = [
+  {
+    id: "1",
+    name: "PythonProject",
+    threads: [
+      { id: "1-1", title: "summarization_middleware_an...", time: "1w" },
+      { id: "1-2", title: "Explain SummarizationMiddlew...", time: "1w" },
+    ],
+  },
+  {
+    id: "2",
+    name: "\u9762\u8BD5\u6587\u6863_github_\u526F\u672C2",
+    threads: [
+      { id: "2-1", title: "\u5B8C\u5584\u9762\u8BD5\u98983-20\u7B54\u6848\u4F5C\u7B54\u6307\u5BFC\u8986...", time: "1w" },
+    ],
+  },
+]
 
-  const isActive = (path: string) => {
-    if (path === '/chat') {
-      return location.pathname === '/chat' || location.pathname === '/'
-    }
-    return location.pathname.startsWith(path)
+export function Sidebar() {
+  const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>({
+    "1": true,
+    "2": true,
+  })
+
+  const toggleGroup = (id: string) => {
+    setExpandedGroups((prev) => ({ ...prev, [id]: !prev[id] }))
   }
 
   return (
-    <aside className="sidebar">
-      <div className="sidebar-header">
-        <h1 className="sidebar-title">AI Agent Desktop</h1>
-        <button className="new-chat-btn" onClick={handleNewChat}>
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M8 3V13M3 8H13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-          </svg>
-          新建聊天
+    <aside className="flex h-full w-[280px] flex-col border-r border-border bg-sidebar text-sidebar-foreground">
+      {/* Drag handle area */}
+      <DragHandle className="h-8 w-full shrink-0" />
+
+      {/* Top actions */}
+      <div className="flex flex-col gap-1 pb-2 pt-1">
+        <button className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors hover:bg-sidebar-accent">
+          <PenSquare className="h-4 w-4" />
+          <span>New thread</span>
+        </button>
+        <button className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors hover:bg-sidebar-accent">
+          <Clock className="h-4 w-4" />
+          <span>Automations</span>
+        </button>
+        <button className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors hover:bg-sidebar-accent">
+          <Puzzle className="h-4 w-4" />
+          <span>Skills</span>
         </button>
       </div>
 
-      <div className="sidebar-content">
-        <div className="chat-list">
-          {chats.map((chat) => (
-            <Link
-              key={chat.id}
-              to={`/chat/${chat.id}`}
-              className={`chat-item ${isActive(`/chat/${chat.id}`) ? 'active' : ''}`}
-            >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="chat-icon">
-                <path d="M14 10.5V13.5C14 14.0523 13.5523 14.5 13 14.5H3C2.44772 14.5 2 14.0523 2 13.5V3.5C2 2.94772 2.44772 2.5 3 2.5H6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                <path d="M14 10.5V12.5C14 12.7761 13.7761 13 13.5 13H10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                <path d="M6 6.5H10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                <path d="M6 9H9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-              </svg>
-              <div className="chat-info">
-                <span className="chat-title">{chat.title}</span>
-                <span className="chat-time">{chat.time}</span>
-              </div>
-            </Link>
-          ))}
+      {/* Threads header */}
+      <div className="flex items-center justify-between px-4 pb-1 pt-4">
+        <span className="text-xs font-medium text-muted-foreground">Threads</span>
+        <div className="flex items-center gap-1">
+          <button className="rounded p-1 transition-colors hover:bg-sidebar-accent">
+            <FolderInput className="h-3.5 w-3.5 text-muted-foreground" />
+          </button>
+          <button className="rounded p-1 transition-colors hover:bg-sidebar-accent">
+            <ListFilter className="h-3.5 w-3.5 text-muted-foreground" />
+          </button>
         </div>
       </div>
 
-      <div className="sidebar-footer">
-        <Link to="/settings" className={`settings-btn ${isActive('/settings') ? 'active' : ''}`}>
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M8 10C9.10457 10 10 9.10457 10 8C10 6.89543 9.10457 6 8 6C6.89543 6 6 6.89543 6 8C6 9.10457 6.89543 10 8 10Z" stroke="currentColor" strokeWidth="1.5" />
-            <path d="M13 8L14 7M2 8L3 7M8 2L7 3M8 14L7 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-          </svg>
-          设置
-        </Link>
+      {/* Thread groups */}
+      <div className="flex-1 overflow-y-auto px-2">
+        {threadGroups.map((group) => (
+          <div key={group.id} className="mb-1">
+            <button
+              onClick={() => toggleGroup(group.id)}
+              className="flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-sm transition-colors hover:bg-sidebar-accent"
+            >
+              <FolderOpen className="h-4 w-4 text-muted-foreground" />
+              <span className="flex-1 truncate text-left text-sm">{group.name}</span>
+              {expandedGroups[group.id] ? (
+                <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />
+              ) : (
+                <ChevronRight className="h-3.5 w-3.5 text-muted-foreground" />
+              )}
+            </button>
+            {expandedGroups[group.id] && (
+              <div className="ml-4">
+                {group.threads.map((thread) => (
+                  <button
+                    key={thread.id}
+                    className="flex w-full items-center justify-between rounded-lg px-3 py-1.5 text-sm transition-colors hover:bg-sidebar-accent"
+                  >
+                    <span className="truncate text-muted-foreground">{thread.title}</span>
+                    <span className="ml-2 shrink-0 text-xs text-muted-foreground">{thread.time}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* Settings */}
+      <div className="border-t border-border px-3 py-2">
+        <button className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors hover:bg-sidebar-accent">
+          <Settings className="h-4 w-4" />
+          <span>Settings</span>
+        </button>
       </div>
     </aside>
   )
 }
-
-export default Sidebar
