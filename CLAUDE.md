@@ -82,8 +82,17 @@ server/               # 本地后端服务
 
 ### Git 提交规范
 
-- 使用有意义的提交信息
-- 遵循 conventional commits 格式（可选）
+- 使用 **中文** 提交信息
+- 遵循 conventional commits 格式
+- 类型说明：
+  - `feat`: 新功能
+  - `fix`: 修复 bug
+  - `refactor`: 代码重构
+  - `docs`: 文档更新
+  - `style`: 样式调整
+  - `chore`: 构建/工具链调整
+- 提交信息格式：`type: 描述`，例如 `feat: 添加用户登录功能`
+- 每行不超过 100 字符
 
 ## 功能迭代记录
 
