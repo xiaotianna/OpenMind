@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain } from 'electron'
+import { app, BrowserWindow } from 'electron'
 import { join } from 'path'
 
 // 禁用 GPU 加速（解决某些 macOS 问题）
@@ -50,27 +50,6 @@ function createWindow() {
     mainWindow.loadFile(join(__dirname, '../../dist/index.html'))
   }
 }
-
-// 窗口控制 IPC 处理
-ipcMain.handle('window:minimize', () => {
-  mainWindow?.minimize()
-})
-
-ipcMain.handle('window:maximize', () => {
-  if (mainWindow?.isMaximized()) {
-    mainWindow.unmaximize()
-  } else {
-    mainWindow?.maximize()
-  }
-})
-
-ipcMain.handle('window:close', () => {
-  mainWindow?.close()
-})
-
-ipcMain.handle('window:isMaximized', () => {
-  return mainWindow?.isMaximized() ?? false
-})
 
 app.whenReady().then(() => {
   createWindow()

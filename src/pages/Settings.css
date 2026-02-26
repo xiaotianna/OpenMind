@@ -1,0 +1,74 @@
+.settings-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.settings-header {
+  padding: 16px 24px;
+  border-bottom: 1px solid #e5e5e5;
+  background-color: #fff;
+}
+
+.settings-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.settings-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+}
+
+.settings-section {
+  margin-bottom: 32px;
+}
+
+.section-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #666;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.setting-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.setting-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.setting-input,
+.setting-select {
+  padding: 10px 12px;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #333;
+  background-color: #fff;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.setting-input:focus,
+.setting-select:focus {
+  border-color: #5436da;
+}
+
+.setting-input::placeholder {
+  color: #999;
+}
+
+.setting-select {
+  cursor: pointer;
+}
