@@ -28,14 +28,16 @@ function createWindow() {
     minHeight: 600,
     frame: false, // 使用自定义标题栏（无边框）
     titleBarStyle: 'hidden', // macOS 隐藏标题栏
+    vibrancy: 'sidebar',
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
       nodeIntegration: false,
       contextIsolation: true,
-      sandbox: false
+      sandbox: false,
+      // 确保 CSS backdrop-filter 在 Electron 中生效
+      experimentalFeatures: true
     },
-    show: false,
-    backgroundColor: '#ffffff'
+    show: false
   })
 
   // 窗口准备就绪后显示

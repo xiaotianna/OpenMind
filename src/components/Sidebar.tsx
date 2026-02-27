@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import {
   PenSquare,
   Clock,
@@ -9,8 +10,12 @@ import {
   Settings,
   ListFilter,
   FolderInput,
+  Moon,
+  Sun,
 } from "lucide-react"
 import { DragHandle } from "@/components/drag-handle"
+import { useTheme } from "@/hooks/use-theme"
+import { isMac } from "@/common"
 
 interface Thread {
   id: string
@@ -47,27 +52,28 @@ export function Sidebar() {
     "1": true,
     "2": true,
   })
+  const { theme, toggleTheme } = useTheme()
 
   const toggleGroup = (id: string) => {
     setExpandedGroups((prev) => ({ ...prev, [id]: !prev[id] }))
   }
 
   return (
-    <aside className="flex h-full w-[280px] flex-col border-r border-border bg-sidebar text-sidebar-foreground">
+    <aside className="sidebar-glass flex h-full w-[280px] flex-col border-r border-border/60 text-sidebar-foreground backdrop-blur-2xl backdrop-saturate-150">
       {/* Drag handle area */}
-      <DragHandle className="h-8 w-full shrink-0" />
+      {isMac && <DragHandle className="h-8 w-full shrink-0" />}
 
       {/* Top actions */}
-      <div className="flex flex-col gap-1 pb-2 pt-1">
-        <button className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors hover:bg-sidebar-accent">
+      <div className="flex flex-col gap-1 pb-2 px-2 pt-2">
+        <button className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors hover:bg-secondary">
           <PenSquare className="h-4 w-4" />
           <span>New thread</span>
         </button>
-        <button className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors hover:bg-sidebar-accent">
+        <button className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors hover:bg-secondary">
           <Clock className="h-4 w-4" />
           <span>Automations</span>
         </button>
-        <button className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors hover:bg-sidebar-accent">
+        <button className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors hover:bg-secondary">
           <Puzzle className="h-4 w-4" />
           <span>Skills</span>
         </button>
@@ -77,10 +83,10 @@ export function Sidebar() {
       <div className="flex items-center justify-between px-4 pb-1 pt-4">
         <span className="text-xs font-medium text-muted-foreground">Threads</span>
         <div className="flex items-center gap-1">
-          <button className="rounded p-1 transition-colors hover:bg-sidebar-accent">
+          <button className="rounded p-1 transition-colors hover:bg-secondary">
             <FolderInput className="h-3.5 w-3.5 text-muted-foreground" />
           </button>
-          <button className="rounded p-1 transition-colors hover:bg-sidebar-accent">
+          <button className="rounded p-1 transition-colors hover:bg-secondary">
             <ListFilter className="h-3.5 w-3.5 text-muted-foreground" />
           </button>
         </div>
@@ -92,7 +98,7 @@ export function Sidebar() {
           <div key={group.id} className="mb-1">
             <button
               onClick={() => toggleGroup(group.id)}
-              className="flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-sm transition-colors hover:bg-sidebar-accent"
+              className="flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-sm transition-colors hover:bg-secondary"
             >
               <FolderOpen className="h-4 w-4 text-muted-foreground" />
               <span className="flex-1 truncate text-left text-sm">{group.name}</span>
@@ -107,7 +113,7 @@ export function Sidebar() {
                 {group.threads.map((thread) => (
                   <button
                     key={thread.id}
-                    className="flex w-full items-center justify-between rounded-lg px-3 py-1.5 text-sm transition-colors hover:bg-sidebar-accent"
+                    className="flex w-full items-center justify-between rounded-lg px-3 py-1.5 text-sm transition-colors hover:bg-secondary"
                   >
                     <span className="truncate text-muted-foreground">{thread.title}</span>
                     <span className="ml-2 shrink-0 text-xs text-muted-foreground">{thread.time}</span>
@@ -121,7 +127,28 @@ export function Sidebar() {
 
       {/* Settings */}
       <div className="border-t border-border px-3 py-2">
-        <button className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors hover:bg-sidebar-accent">
+        <button
+          onClick={toggleTheme}
+          className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors hover:bg-secondary"
+        >
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={theme}
+              initial={{ rotate: -90, opacity: 0 }}
+              animate={{ rotate: 0, opacity: 1 }}
+              exit={{ rotate: 90, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              {theme === "dark" ? (
+                <Sun className="h-4 w-4" />
+              ) : (
+                <Moon className="h-4 w-4" />
+              )}
+            </motion.div>
+          </AnimatePresence>
+          <span>{theme === "dark" ? "Light mode" : "Dark mode"}</span>
+        </button>
+        <button className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors hover:bg-secondary">
           <Settings className="h-4 w-4" />
           <span>Settings</span>
         </button>
