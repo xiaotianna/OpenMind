@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { AnimatePresence } from "framer-motion"
 import {
   PenSquare,
   Clock,
@@ -64,7 +64,7 @@ export function Sidebar() {
       {isMac && <DragHandle className="h-8 w-full shrink-0" />}
 
       {/* Top actions */}
-      <div className="flex flex-col gap-1 pb-2 px-2 pt-2">
+      <div className="flex flex-col gap-1 p-3 pt-4">
         <button className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors hover:bg-secondary">
           <PenSquare className="h-4 w-4" />
           <span>New thread</span>
@@ -132,19 +132,15 @@ export function Sidebar() {
           className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors hover:bg-secondary"
         >
           <AnimatePresence mode="wait">
-            <motion.div
+            <div
               key={theme}
-              initial={{ rotate: -90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: 90, opacity: 0 }}
-              transition={{ duration: 0.2 }}
             >
               {theme === "dark" ? (
                 <Sun className="h-4 w-4" />
               ) : (
                 <Moon className="h-4 w-4" />
               )}
-            </motion.div>
+            </div>
           </AnimatePresence>
           <span>{theme === "dark" ? "Light mode" : "Dark mode"}</span>
         </button>
