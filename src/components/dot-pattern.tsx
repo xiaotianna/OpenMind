@@ -34,27 +34,63 @@ export function DotPattern() {
     const dpr = window.devicePixelRatio || 1
     canvas.width = dimensions.width * dpr
     canvas.height = dimensions.height * dpr
-    ctx.scale(dpr, dpr)
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
 
-    ctx.clearRect(0, 0, dimensions.width, dimensions.height)
-
-    const spacing = 12
+    const spacing = 10 // 点间距
     const centerX = dimensions.width / 2
     const centerY = dimensions.height / 2
-    const maxDist = Math.sqrt(centerX * centerX + centerY * centerY)
 
+    // 椭圆拱形参数
+    const radiusX = dimensions.width * 0.5  // 椭圆横向半径
+    const radiusY = dimensions.height * 0.4 // 椭圆纵向高度
+
+    // 生成粒子，每个点有独立的闪烁相位和速度
+    const points: { x: number; y: number; phase: number; speed: number }[] = []
     for (let x = 0; x < dimensions.width; x += spacing) {
       for (let y = 0; y < dimensions.height; y += spacing) {
-        const dx = x - centerX
-        const dy = y - centerY
-        const dist = Math.sqrt(dx * dx + dy * dy)
-        const opacity = Math.max(0, 0.25 - (dist / maxDist) * 0.25)
+        points.push({
+          x,
+          y,
+          phase: Math.random() * Math.PI * 2,  // 随机相位
+          speed: 2 + Math.random() * 4,        // 随机闪烁速度
+        })
+      }
+    }
 
-        ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`
+    let animationFrameId: number
+
+    const draw = (time: number) => {
+      ctx.clearRect(0, 0, dimensions.width, dimensions.height)
+
+      for (const point of points) {
+        // 椭圆拱形：中间高、两侧低（使用椭圆方程）
+        const dx = (point.x - centerX) / radiusX
+        const dy = (point.y - centerY) / radiusY
+        const ellipseFalloff = Math.max(0, 1 - dx * dx - dy * dy)
+        const shapeFalloff = Math.pow(ellipseFalloff, 1.5) // 平滑边缘
+
+        // 每个点独立随机闪烁 (x 和 y 方向亮度随机变化)
+        const twinkle = 0.3 + 0.7 * (0.5 + 0.5 * Math.sin(time * 0.001 * point.speed + point.phase))
+
+        const opacity = Math.max(0, shapeFalloff * twinkle)
+
+        if (opacity <= 0.02) continue
+
+        // 蓝色粒子
+        // ctx.fillStyle = `rgba(59, 130, 246, ${opacity})`
+        ctx.fillStyle = `rgba(147, 197, 253, ${opacity})`
         ctx.beginPath()
-        ctx.arc(x, y, 1, 0, Math.PI * 2)
+        ctx.arc(point.x, point.y, 1.6, 0, Math.PI * 2)
         ctx.fill()
       }
+
+      animationFrameId = window.requestAnimationFrame(draw)
+    }
+
+    animationFrameId = window.requestAnimationFrame(draw)
+
+    return () => {
+      window.cancelAnimationFrame(animationFrameId)
     }
   }, [dimensions])
 

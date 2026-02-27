@@ -4,7 +4,7 @@ import { isMac } from "./common"
 
 function App() {
   return (
-    <div className="flex h-screen w-screen flex-col overflow-hidden bg-transparent">
+    <div className="flex h-screen w-screen flex-col overflow-hidden bg-background">
       {/* 顶部预留空间：可拖拽移动无边框窗口；macOS 左侧留出红黄绿按钮点击区域 */}
       <header
         className="drag-region flex h-10 w-full shrink-0 cursor-move select-none items-center border-b border-border/50 bg-white/30 backdrop-blur-md"

@@ -59,7 +59,7 @@ export function Sidebar() {
   }
 
   return (
-    <aside className="sidebar-glass flex h-full w-[280px] flex-col border-r border-border/60 text-sidebar-foreground backdrop-blur-2xl backdrop-saturate-150">
+    <aside className="sidebar-glass flex h-full w-[280px] flex-col border-r border-border/60 text-sidebar-foreground bg-background">
       {/* Drag handle area */}
       {isMac && <DragHandle className="h-8 w-full shrink-0" />}
 

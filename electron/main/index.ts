@@ -28,7 +28,6 @@ function createWindow() {
     minHeight: 600,
     frame: false, // 使用自定义标题栏（无边框）
     titleBarStyle: 'hidden', // macOS 隐藏标题栏
-    vibrancy: 'sidebar',
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
       nodeIntegration: false,
