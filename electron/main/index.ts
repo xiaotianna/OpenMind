@@ -28,6 +28,7 @@ function createWindow() {
     minHeight: 600,
     frame: false, // 使用自定义标题栏（无边框）
     titleBarStyle: 'hidden', // macOS 隐藏标题栏
+    trafficLightPosition: process.platform === 'darwin' ? { x: 20, y: 20 } : undefined, // 统一红黄绿按钮与窗口边框距离
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
       nodeIntegration: false,

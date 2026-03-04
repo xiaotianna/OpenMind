@@ -1,9 +1,10 @@
-import { useState } from "react"
-import { AnimatePresence } from "framer-motion"
+import { useState, useRef, useEffect } from "react"
+import { AnimatePresence, motion } from "framer-motion"
 import {
   PenSquare,
   Clock,
   Puzzle,
+  Folder,
   FolderOpen,
   ChevronDown,
   ChevronRight,
@@ -12,10 +13,19 @@ import {
   FolderInput,
   Moon,
   Sun,
+  CircleUserRound,
+  Globe,
+  LogOut,
 } from "lucide-react"
 import { DragHandle } from "@/components/drag-handle"
 import { useTheme } from "@/hooks/use-theme"
 import { isMac } from "@/common"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 interface Thread {
   id: string
@@ -47,19 +57,31 @@ const threadGroups: ThreadGroup[] = [
   },
 ]
 
-export function Sidebar() {
+interface SidebarProps {
+  width?: number
+}
+
+export function Sidebar({ width = 280 }: SidebarProps) {
   const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>({
     "1": true,
     "2": true,
   })
+  const isFirstRender = useRef(true)
   const { theme, toggleTheme } = useTheme()
+
+  useEffect(() => {
+    isFirstRender.current = false
+  }, [])
 
   const toggleGroup = (id: string) => {
     setExpandedGroups((prev) => ({ ...prev, [id]: !prev[id] }))
   }
 
   return (
-    <aside className="sidebar-glass flex h-full w-[280px] flex-col border-r border-border/60 text-sidebar-foreground bg-background">
+    <aside
+      className="sidebar-glass flex h-full shrink-0 flex-col bg-background text-sidebar-foreground"
+      style={{ width }}
+    >
       {/* Drag handle area */}
       {isMac && <DragHandle className="h-8 w-full shrink-0" />}
 
@@ -100,7 +122,11 @@ export function Sidebar() {
               onClick={() => toggleGroup(group.id)}
               className="flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-sm transition-colors hover:bg-secondary"
             >
-              <FolderOpen className="h-4 w-4 text-muted-foreground" />
+              {expandedGroups[group.id] ? (
+                <FolderOpen className="h-4 w-4 text-muted-foreground" />
+              ) : (
+                <Folder className="h-4 w-4 text-muted-foreground" />
+              )}
               <span className="flex-1 truncate text-left text-sm">{group.name}</span>
               {expandedGroups[group.id] ? (
                 <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />
@@ -108,46 +134,73 @@ export function Sidebar() {
                 <ChevronRight className="h-3.5 w-3.5 text-muted-foreground" />
               )}
             </button>
-            {expandedGroups[group.id] && (
-              <div className="ml-4">
-                {group.threads.map((thread) => (
-                  <button
-                    key={thread.id}
-                    className="flex w-full items-center justify-between rounded-lg px-3 py-1.5 text-sm transition-colors hover:bg-secondary"
-                  >
-                    <span className="truncate text-muted-foreground">{thread.title}</span>
-                    <span className="ml-2 shrink-0 text-xs text-muted-foreground">{thread.time}</span>
-                  </button>
-                ))}
-              </div>
-            )}
+            <AnimatePresence mode="wait">
+              {expandedGroups[group.id] && (
+                <motion.div
+                  initial={isFirstRender.current ? false : { height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <div className="ml-4 overflow-hidden">
+                    {group.threads.map((thread) => (
+                      <button
+                        key={thread.id}
+                        className="flex w-full items-center justify-between rounded-lg px-3 py-1.5 text-sm transition-colors hover:bg-secondary"
+                      >
+                        <span className="truncate text-muted-foreground">{thread.title}</span>
+                        <span className="ml-2 shrink-0 text-xs text-muted-foreground">{thread.time}</span>
+                      </button>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         ))}
       </div>
 
-      {/* Settings */}
-      <div className="border-t border-border px-3 py-2">
-        <button
-          onClick={toggleTheme}
-          className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors hover:bg-secondary"
-        >
-          <AnimatePresence mode="wait">
-            <div
-              key={theme}
-            >
-              {theme === "dark" ? (
-                <Sun className="h-4 w-4" />
-              ) : (
-                <Moon className="h-4 w-4" />
-              )}
+      {/* Settings trigger and popup menu */}
+      <div className="px-3 py-2">
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <button className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors hover:bg-secondary">
+              <Settings className="h-4 w-4" />
+              <span>Setting</span>
+            </button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent
+            side="top"
+            align="start"
+            sideOffset={6}
+            className="w-[240px] rounded-xl border border-border bg-card p-1.5"
+          >
+            <div className="flex items-center gap-2.5 rounded-lg px-2 py-1.5 text-xs text-muted-foreground">
+              <CircleUserRound className="h-4 w-4" />
+              <span className="truncate">xiaotianwifi@gmail.com</span>
             </div>
-          </AnimatePresence>
-          <span>{theme === "dark" ? "Light mode" : "Dark mode"}</span>
-        </button>
-        <button className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors hover:bg-secondary">
-          <Settings className="h-4 w-4" />
-          <span>Settings</span>
-        </button>
+            <DropdownMenuSeparator />
+
+            <button className="flex w-full items-center gap-2.5 rounded-lg px-2 py-1.5 text-left text-sm transition-colors hover:bg-secondary">
+              <Globe className="h-3.5 w-3.5" />
+              <span className="flex-1">语言</span>
+              <ChevronRight className="h-3.5 w-3.5 text-muted-foreground" />
+            </button>
+
+            <button
+              onClick={toggleTheme}
+              className="flex w-full items-center gap-2.5 rounded-lg px-2 py-1.5 text-left text-sm transition-colors hover:bg-secondary"
+            >
+              {theme === "dark" ? <Sun className="h-3.5 w-3.5" /> : <Moon className="h-3.5 w-3.5" />}
+              <span>主题：{theme === "dark" ? "深色" : "浅色"}</span>
+            </button>
+
+            <button className="flex w-full items-center gap-2.5 rounded-lg px-2 py-1.5 text-left text-sm transition-colors hover:bg-secondary">
+              <LogOut className="h-3.5 w-3.5" />
+              <span>退出登录</span>
+            </button>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </aside>
   )

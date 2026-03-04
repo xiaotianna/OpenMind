@@ -45,6 +45,7 @@ specifiers:
   framer-motion: ^12.34.3
   input-otp: 1.4.2
   lucide-react: ^0.575.0
+  next-themes: ^0.4.6
   postcss: ^8.5.6
   react: ^18.2.0
   react-day-picker: 9.13.2
@@ -102,6 +103,7 @@ dependencies:
   framer-motion: 12.34.3_nnrd3gsncyragczmpvfhocinkq
   input-otp: 1.4.2_nnrd3gsncyragczmpvfhocinkq
   lucide-react: 0.575.0_react@18.3.1
+  next-themes: 0.4.6_nnrd3gsncyragczmpvfhocinkq
   react: 18.3.1
   react-day-picker: 9.13.2_react@18.3.1
   react-dom: 18.3.1_react@18.3.1
@@ -4072,6 +4074,16 @@ packages:
     resolution: {integrity: sha512-N8SpfPUnUp1bK+PMYW8qSWdl9U+wwNWI4QKxOYDy9JAro3WMX7p2OeVRF9v+347pnakNevPmiHhNmZ2HbFA76w==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
+
+  /next-themes/0.4.6_nnrd3gsncyragczmpvfhocinkq:
+    resolution: {integrity: sha512-pZvgD5L0IEvX5/9GWyHMf3m8BKiVQwsCMHfoFosXtXBMnaS0ZnIJ9ST4b4NqLVKDEm8QBxoNNGNaBv2JNF6XNA==}
+    peerDependencies:
+      react: ^16.8 || ^17 || ^18 || ^19 || ^19.0.0-rc
+      react-dom: ^16.8 || ^17 || ^18 || ^19 || ^19.0.0-rc
+    dependencies:
+      react: 18.3.1
+      react-dom: 18.3.1_react@18.3.1
+    dev: false
 
   /node-addon-api/1.7.2:
     resolution: {integrity: sha512-ibPK3iA+vaY1eEjESkQkM0BbCqFOaZMiXRTtdB0u7b4djtY6JnsjvPdUHVMg6xQt3B8fpTTWHI9A+ADjM9frzg==}
