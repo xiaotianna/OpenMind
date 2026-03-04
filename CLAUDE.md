@@ -36,6 +36,10 @@
 
 ## 开发规范
 
+### 禁止事项
+
+- **禁止自动启动开发服务器**: 不要在完成任务时自动启动 `pnpm run dev` 或其他开发服务器，如果需要启动必须先询问用户确认
+
 ### 代码组织
 
 1. **组件拆分规则**
@@ -54,11 +58,13 @@
 src/
 ├── components/       # React 组件
 │   └── common/       # 通用组件
+├── pages/           # 页面组件
 ├── hooks/            # 自定义 hooks
 ├── utils/            # 工具函数
 ├── types/            # TypeScript 类型定义
 ├── styles/           # 样式文件
 ├── services/         # 与后端通信的服务
+├── router.tsx        # 路由配置
 ├── App.tsx           # 主应用组件
 └── main.tsx          # 入口文件
 
@@ -73,6 +79,18 @@ server/               # 本地后端服务
 ├── package.json
 └── tsconfig.json
 ```
+
+### 路由规范
+
+- 使用 **配置式路由**，在 `src/router.tsx` 中统一管理
+- 页面组件放在 `src/pages` 目录下
+- 路由配置格式：
+  ```typescript
+  const routes = [
+    { path: "/", component: HomePage },
+    { path: "/settings", component: SettingsPage },
+  ]
+  ```
 
 ### 命名规范
 

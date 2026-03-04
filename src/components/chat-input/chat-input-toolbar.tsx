@@ -11,6 +11,7 @@ import {
   Github,
   Image,
   Plus,
+  Shapes,
   Upload,
   Workflow,
 } from "lucide-react"
@@ -91,7 +92,7 @@ export function ChatInputToolbar({ canSubmit }: ChatInputToolbarProps) {
                 right={<Switch defaultChecked aria-label="Generate Images" />}
               />
               <MenuRow
-                icon={<Workflow className="h-4 w-4" />}
+                icon={<Shapes className="h-4 w-4" />}
                 label="Design System"
                 right={<ChevronRight className="h-4 w-4 text-muted-foreground" />}
               />
