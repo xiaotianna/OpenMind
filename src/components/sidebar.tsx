@@ -19,7 +19,7 @@ import {
 } from 'lucide-react'
 import { DragHandle } from '@/components/drag-handle'
 import { useTheme } from '@/hooks/use-theme'
-import { isMac } from '@/common'
+import { isDesktop } from '@/common'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -91,7 +91,7 @@ export function Sidebar({ width = 280 }: SidebarProps) {
       style={{ width }}
     >
       {/* Drag handle area */}
-      {isMac && <DragHandle className='h-8 w-full shrink-0' />}
+      {isDesktop && <DragHandle className='h-8 w-full shrink-0' />}
 
       {/* Top actions */}
       <div className='flex flex-col gap-1 p-3 pt-4'>

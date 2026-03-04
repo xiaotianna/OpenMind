@@ -8,7 +8,7 @@ import {
 import { ChatInput } from '@/components/chat-input/chat-input'
 import { DotPattern } from '@/components/dot-pattern'
 import { DragHandle } from '@/components/drag-handle'
-import { isMac } from '@/common'
+import { isDesktop } from '@/common'
 
 const quickActions = [
   { icon: Clock, label: '\u5B9A\u65F6\u4EFB\u52A1', color: 'text-orange-400' },
@@ -30,7 +30,7 @@ export default function Chat() {
   return (
     <main className='relative flex flex-1 flex-col items-center justify-center overflow-hidden bg-background'>
       {/* Drag handle area */}
-      {isMac && (
+      {isDesktop && (
         <DragHandle className='absolute left-0 top-0 h-8 w-full shrink-0' />
       )}
 

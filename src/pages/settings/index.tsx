@@ -13,7 +13,7 @@ import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { DragHandle } from '@/components/drag-handle'
-import { isMac } from '@/common'
+import { isDesktop } from '@/common'
 
 const menuItems = [
   { icon: SlidersHorizontal, label: '常规', to: 'general' },
@@ -32,7 +32,7 @@ const SettingsLayout = () => {
   return (
     <div className="flex h-screen w-screen overflow-hidden bg-background text-foreground">
       <aside className="w-64 shrink-0 border-r border-border/50 bg-card/50">
-        {isMac && <DragHandle className="h-8 w-full shrink-0" />}
+        {isDesktop && <DragHandle className="h-8 w-full shrink-0" />}
         <div className="px-3 pb-4 pt-4">
           <Button
             variant="ghost"
@@ -65,8 +65,10 @@ const SettingsLayout = () => {
         </div>
       </aside>
 
-      <main className="flex-1 overflow-y-auto bg-background px-8 py-6">
-        <Outlet />
+      <main className="flex-1 overflow-y-auto bg-background">
+        <div className="mx-auto w-full max-w-[980px] px-5 py-4 md:px-6">
+          <Outlet />
+        </div>
       </main>
     </div>
   )

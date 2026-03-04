@@ -39,6 +39,7 @@
 ### 禁止事项
 
 - **禁止自动启动开发服务器**: 不要在完成任务时自动启动 `pnpm run dev` 或其他开发服务器，如果需要启动必须先询问用户确认
+- **禁止私自 commit**: 没有用户明确要求的情况下，不允许私自执行 git commit，所有提交必须经过用户确认
 
 ### 代码组织
 
@@ -52,37 +53,66 @@
    - 放在 `src/utils` 或 `src/hooks` 目录
    - 命名要有语义，使用驼峰命名法
 
-### 文件结构
+### 文件组织规范
+
+#### 目录命名
+
+- 使用 **kebab-case**（短横线命名）
+- 示例：`chat-input`、`use-theme`、`mcp-servers`
+
+#### 文件命名
+
+- **React 组件**: PascalCase（如 `Sidebar.tsx`、`ChatInput.tsx`）
+- **Hooks**: camelCase，以 `use-` 开头（如 `use-theme.ts`）
+- **工具函数**: camelCase（如 `utils.ts`）
+- **配置文件**: 与目录同名的 index.ts 或独立命名
+
+#### 目录结构
 
 ```
 src/
-├── components/       # React 组件
-│   └── common/       # 通用组件
-├── pages/           # 页面组件
-├── hooks/            # 自定义 hooks
-├── utils/            # 工具函数
-├── types/            # TypeScript 类型定义
-├── styles/           # 样式文件
-├── services/         # 与后端通信的服务
-├── router.tsx        # 路由配置
-├── App.tsx           # 主应用组件
-└── main.tsx          # 入口文件
-
-server/               # 本地后端服务
-├── src/
-│   ├── index.ts      # 后端入口
-│   ├── agents/       # Agent 逻辑 (LangGraph)
-│   ├── chains/       # Chain 逻辑 (LangChain)
-│   ├── providers/    # 大模型提供商适配
-│   ├── routes/       # API 路由
-│   └── storage/      # 本地存储
-├── package.json
-└── tsconfig.json
+├── components/           # React 组件（非 UI 库）
+│   ├── chat-input/      # 聊天输入组件
+│   ├── sidebar.tsx
+│   ├── drag-handle.tsx
+│   └── dot-pattern.tsx
+├── pages/               # 页面组件
+│   ├── layout/          # 布局页面
+│   │   ├── chat/       # 聊天页面
+│   │   └── index.tsx
+│   └── settings/        # 设置页面（嵌套路由）
+│       ├── general/
+│       ├── config/
+│       ├── personalization/
+│       ├── mcp-servers/
+│       ├── git/
+│       ├── environment/
+│       ├── worktree/
+│       └── archived-threads/
+├── hooks/               # 自定义 hooks
+│   ├── use-theme.ts
+│   ├── use-mobile.ts
+│   └── use-toast.ts
+├── lib/                 # 工具库
+│   └── utils.ts
+├── styles/              # 样式文件
+│   └── globals.css
+├── router/              # 路由配置
+│   └── index.tsx
+├── common/              # 通用常量和配置
+│   └── index.ts
+├── App.tsx
+└── main.tsx
 ```
+
+#### 嵌套页面组织
+
+- 同类页面放在同一目录下，使用 `index.tsx` 作为父布局
+- 子页面单独目录，如 `settings/general/index.tsx`
 
 ### 路由规范
 
-- 使用 **配置式路由**，在 `src/router.tsx` 中统一管理
+- 使用 **配置式路由**，在 `src/router/index.tsx` 中统一管理
 - 页面组件放在 `src/pages` 目录下
 - 路由配置格式：
   ```typescript
