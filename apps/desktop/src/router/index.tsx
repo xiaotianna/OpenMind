@@ -30,7 +30,11 @@ const router = createBrowserRouter([
         loader: () => redirect('/chat'),
       },
       {
-        path: 'chat/*',
+        path: 'chat',
+        element: <Chat />,
+      },
+      {
+        path: 'chat/:sessionId',
         element: <Chat />,
       },
     ],
