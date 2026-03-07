@@ -6,6 +6,7 @@ export const OPENAI_PROVIDER = {
     protocol: "openai", // 使用 OpenAI 兼容协议适配器
     defaultBaseUrl: "https://api.openai.com/v1", // 默认请求基地址
     supportsCustomBaseUrl: true, // 是否允许用户自定义 baseUrl
+    themedLogo: true, // 是否支持明暗主题图标
     auth: {
       type: "apiKey", // 鉴权方式
       header: "Authorization", // API Key 注入请求头

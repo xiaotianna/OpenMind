@@ -10,6 +10,7 @@ export const MODEL_PROVIDERS = MODEL_PROVIDER_CONFIGS.map(
     provider: config.provider.label,
     providerSlug: config.provider.id,
     protocol: config.provider.protocol,
+    themedLogo: "themedLogo" in config.provider ? config.provider.themedLogo : false,
     models: [...config.models],
   })
 )
