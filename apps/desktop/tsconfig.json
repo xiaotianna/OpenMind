@@ -17,11 +17,10 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
     "paths": {
-      "@ai-agent/core": ["./packages/core/src"]
+      "@/*": ["./src/*"],
+      "@ai-agent/core": ["../packages/core/src"]
     }
   },
-  "references": [
-    { "path": "./packages/core" },
-    { "path": "./apps/desktop" }
-  ]
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }
