@@ -17,7 +17,7 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
     "paths": {
-      "@ai-agent/core": ["./packages/core/src"]
+      "@openmind/agent-sdk": ["./packages/agent-sdk/src"]
     }
   },
   "references": [

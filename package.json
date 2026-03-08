@@ -1,13 +1,14 @@
 {
-  "name": "ai-agent-monorepo",
+  "name": "openmind-monorepo",
   "version": "0.1.0",
   "private": true,
-  "description": "AI Agent Monorepo",
+  "description": "OpenMind Desktop Application",
   "scripts": {
-    "dev": "pnpm --filter @ai-agent/desktop dev",
-    "build": "pnpm --filter @ai-agent/desktop build",
+    "install:all": "pnpm i -r",
+    "dev": "pnpm --filter @openmind/desktop dev",
+    "build": "pnpm --filter @openmind/desktop build",
     "build:all": "pnpm -r build",
-    "dev:server": "pnpm --filter @ai-agent/server dev"
+    "dev:server": "pnpm --filter @openmind/server dev"
   },
   "devDependencies": {
     "typescript": "^5.2.2"
