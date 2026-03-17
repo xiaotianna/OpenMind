@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
   PenSquare,
-  Puzzle,
   Folder,
   FolderOpen,
   ChevronDown,
@@ -15,7 +14,8 @@ import {
   Sun,
   CircleUserRound,
   Globe,
-  LogOut
+  LogOut,
+  Wand2
 } from 'lucide-react'
 import { DragHandle } from '@/components/drag-handle'
 import { useTheme } from '@/hooks/use-theme'
@@ -100,7 +100,7 @@ export function Sidebar({ width = 280 }: SidebarProps) {
           <span>New thread</span>
         </button>
         <button className='flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors hover:bg-secondary'>
-          <Puzzle className='h-4 w-4' />
+          <Wand2 className='h-4 w-4' />
           <span>Skills</span>
         </button>
       </div>

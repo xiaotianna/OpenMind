@@ -1,7 +1,8 @@
 import { ANTHROPIC_PROTOCOL_ADAPTER } from "./anthropic-adapter"
 import { GEMINI_PROTOCOL_ADAPTER } from "./gemini-adapter"
 import { OPENAI_PROTOCOL_ADAPTER } from "./openai-adapter"
-import type { ProviderProtocol } from "../providers"
+
+type ProviderProtocol = "openai" | "anthropic" | "gemini"
 
 // 协议适配器注册表：根据协议选择请求路径与鉴权头构造逻辑
 export const PROTOCOL_ADAPTERS: Record<ProviderProtocol, ProtocolAdapter> = {

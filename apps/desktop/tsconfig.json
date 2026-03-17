@@ -18,7 +18,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@openmind/agent-sdk": ["../packages/agent-sdk/src"]
+      "@openmind/agent-sdk/*": ["../packages/agent-sdk/src/*"]
     }
   },
   "include": ["src"],

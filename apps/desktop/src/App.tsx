@@ -1,4 +1,4 @@
-import { Suspense, useEffect } from 'react'
+import { Suspense } from 'react'
 import { Outlet } from 'react-router-dom'
 import Loading from '@/components/loading'
 import ErrorBoundary from '@/components/error-boundary'

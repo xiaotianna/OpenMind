@@ -14,11 +14,10 @@ const SettingsPersonalization = lazy(
 )
 const SettingsMcpServers = lazy(() => import('@/pages/settings/mcp-servers'))
 const SettingsGit = lazy(() => import('@/pages/settings/git'))
-const SettingsEnvironment = lazy(() => import('@/pages/settings/environment'))
-const SettingsWorktree = lazy(() => import('@/pages/settings/worktree'))
-const SettingsArchivedThreads = lazy(
-  () => import('@/pages/settings/archived-threads')
-)
+const SettingsModels = lazy(() => import('@/pages/settings/models'))
+const SettingsPrompts = lazy(() => import('@/pages/settings/prompts'))
+const SettingsTools = lazy(() => import('@/pages/settings/tools'))
+const SettingsSkills = lazy(() => import('@/pages/settings/skills'))
 
 const router = createBrowserRouter([
   {
@@ -27,17 +26,17 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        loader: () => redirect('/chat'),
+        loader: () => redirect('/chat')
       },
       {
         path: 'chat',
-        element: <Chat />,
+        element: <Chat />
       },
       {
         path: 'chat/:sessionId',
-        element: <Chat />,
-      },
-    ],
+        element: <Chat />
+      }
+    ]
   },
   {
     path: '/settings',
@@ -45,46 +44,50 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        loader: () => redirect('/settings/general'),
+        loader: () => redirect('/settings/general')
       },
       {
         path: 'general',
-        element: <SettingsGeneral />,
+        element: <SettingsGeneral />
       },
       {
         path: 'config',
-        element: <SettingsConfig />,
+        element: <SettingsConfig />
       },
       {
         path: 'personalization',
-        element: <SettingsPersonalization />,
+        element: <SettingsPersonalization />
       },
       {
         path: 'mcp-servers',
-        element: <SettingsMcpServers />,
+        element: <SettingsMcpServers />
       },
       {
         path: 'git',
-        element: <SettingsGit />,
+        element: <SettingsGit />
       },
       {
-        path: 'environment',
-        element: <SettingsEnvironment />,
+        path: 'models',
+        element: <SettingsModels />
       },
       {
-        path: 'worktree',
-        element: <SettingsWorktree />,
+        path: 'prompts',
+        element: <SettingsPrompts />
       },
       {
-        path: 'archived-threads',
-        element: <SettingsArchivedThreads />,
+        path: 'tools',
+        element: <SettingsTools />
       },
-    ],
+      {
+        path: 'skills',
+        element: <SettingsSkills />
+      }
+    ]
   },
   {
     path: '*',
-    loader: () => redirect('/chat'),
-  },
+    loader: () => redirect('/chat')
+  }
 ])
 
 export { router }

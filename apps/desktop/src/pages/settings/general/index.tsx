@@ -1,117 +1,17 @@
 import * as React from 'react'
 import { Laptop, Moon, Sun } from 'lucide-react'
-import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Input } from '@/components/ui/input'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
+import { ConfigTitle } from '@/components/config/config-title'
+import { SettingsCard } from '@/components/config/settings-card'
+import { SettingsRow } from '@/components/config/settings-row'
+import { PillSelect } from '@/components/config/pill-select'
 import { Switch } from '@/components/ui/switch'
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 
 type FollowUpMode = 'queue' | 'steer'
 type ThemeMode = 'light' | 'dark' | 'system'
-
-function SectionTitle({ children }: { children: React.ReactNode }) {
-  return <h2 className="mt-6 mb-3 text-xl font-semibold tracking-tight">{children}</h2>
-}
-
-function SettingsCard({ children }: { children: React.ReactNode }) {
-  return (
-    <Card className="overflow-hidden gap-0 rounded-xl border-border/60 bg-card/40 py-0 shadow-none">
-      {children}
-    </Card>
-  )
-}
-
-function SettingsRow({
-  title,
-  description,
-  control,
-  noBorder,
-  titleClassName,
-  descriptionClassName,
-}: {
-  title: string
-  description: string
-  control: React.ReactNode
-  noBorder?: boolean
-  titleClassName?: string
-  descriptionClassName?: string
-}) {
-  return (
-    <div
-      className={cn(
-        'grid grid-cols-1 gap-1 px-3.5 py-3 md:grid-cols-[minmax(0,1fr)_auto] md:items-center md:gap-3',
-        !noBorder && 'border-b border-border/60',
-      )}
-    >
-      <div className="min-w-0 flex flex-col gap-1">
-        <p
-          className={cn(
-            'text-[13px] font-medium leading-5 text-foreground',
-            titleClassName,
-          )}
-        >
-          {title}
-        </p>
-        <p
-          className={cn(
-            'mt-0.5 text-[12px] leading-[1.1rem] text-muted-foreground',
-            descriptionClassName,
-          )}
-        >
-          {description}
-        </p>
-      </div>
-      <div className="w-full md:w-auto md:justify-self-end">{control}</div>
-    </div>
-  )
-}
-
-function PillSelect({
-  value,
-  onValueChange,
-  items,
-  widthClassName,
-}: {
-  value: string
-  onValueChange: (value: string) => void
-  items: Array<{ value: string; label: string }>
-  widthClassName?: string
-}) {
-  return (
-    <Select
-      value={value}
-      onValueChange={onValueChange}
-    >
-        <SelectTrigger
-          className={cn(
-            'h-7 rounded-full border-0 bg-muted px-3 text-[12px] shadow-none',
-            widthClassName ?? 'w-full md:min-w-[228px]',
-          )}
-        >
-        <SelectValue />
-      </SelectTrigger>
-      <SelectContent>
-        {items.map((item) => (
-          <SelectItem
-            key={item.value}
-            value={item.value}
-          >
-            {item.label}
-          </SelectItem>
-        ))}
-      </SelectContent>
-    </Select>
-  )
-}
 
 export default function SettingsGeneralPage() {
   const [language, setLanguage] = React.useState('en-us')
@@ -127,7 +27,7 @@ export default function SettingsGeneralPage() {
     React.useState(true)
 
   return (
-    <div className="mx-auto w-full max-w-[660px] pb-5">
+    <>
       <h1 className="text-2xl font-semibold leading-none tracking-tight mb-6 mt-4">General</h1>
 
       <div className="mt-2.5 space-y-2.5">
@@ -227,7 +127,7 @@ export default function SettingsGeneralPage() {
         </SettingsCard>
 
         <section>
-          <SectionTitle>Appearance</SectionTitle>
+          <ConfigTitle>Appearance</ConfigTitle>
           <SettingsCard>
             <SettingsRow
               title="Theme"
@@ -334,7 +234,7 @@ export default function SettingsGeneralPage() {
         </section>
 
         <section>
-          <SectionTitle>Notifications</SectionTitle>
+          <ConfigTitle>Notifications</ConfigTitle>
           <SettingsCard>
             <SettingsRow
               title="Turn completion notifications"
@@ -366,6 +266,6 @@ export default function SettingsGeneralPage() {
           </SettingsCard>
         </section>
       </div>
-    </div>
+    </>
   )
 }

@@ -53,6 +53,10 @@
    - 放在 `src/utils` 或 `src/hooks` 目录
    - 命名要有语义，使用驼峰命名法
 
+3. **空节点规范**
+   - 不需要包裹额外 DOM 元素时，使用 `<>` 或 `<React.Fragment>` 替代空 div
+   - 避免不必要的 div 包装
+
 ### 文件组织规范
 
 #### 目录命名
@@ -88,7 +92,6 @@ src/
 │       ├── git/
 │       ├── environment/
 │       ├── worktree/
-│       └── archived-threads/
 ├── hooks/               # 自定义 hooks
 │   ├── use-theme.ts
 │   ├── use-mobile.ts
