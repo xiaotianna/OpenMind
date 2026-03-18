@@ -12,10 +12,5 @@
   },
   "devDependencies": {
     "typescript": "^5.2.2"
-  },
-  "dependencies": {
-    "@lobehub/fluent-emoji": "^4.1.0",
-    "@lobehub/ui": "^5.5.1",
-    "antd": "^6.3.3"
   }
 }

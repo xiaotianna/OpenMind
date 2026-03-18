@@ -124,3 +124,17 @@
 ::-webkit-scrollbar-horizontal {
   height: 8px;
 }
+
+:root {
+  --diff-added-bg: oklch(0.94 0.08 145);
+  --diff-added-text: oklch(0.35 0.12 145);
+  --diff-removed-bg: oklch(0.94 0.06 25);
+  --diff-removed-text: oklch(0.45 0.18 25);
+}
+
+.dark {
+  --diff-added-bg: oklch(0.25 0.08 145);
+  --diff-added-text: oklch(0.75 0.15 145);
+  --diff-removed-bg: oklch(0.25 0.06 25);
+  --diff-removed-text: oklch(0.75 0.15 25);
+}
