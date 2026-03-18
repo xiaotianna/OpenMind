@@ -1,3 +1,11 @@
+import { ConfigTitle } from '@/components/config/config-title';
+
 export default function SettingsModelsPage() {
-  return <div className="text-sm text-muted-foreground">模型页面占位</div>
+  return (
+    <>
+      <section>
+        <ConfigTitle>模型</ConfigTitle>
+      </section>
+    </>
+  )
 }

@@ -1,3 +1,11 @@
+import { ConfigTitle } from '@/components/config/config-title';
+
 export default function SettingsToolsPage() {
-  return <div className="text-sm text-muted-foreground">工具页面占位</div>
+  return (
+    <>
+      <section>
+        <ConfigTitle>工具</ConfigTitle>
+      </section>
+    </>
+  )
 }

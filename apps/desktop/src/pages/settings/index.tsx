@@ -68,7 +68,7 @@ const SettingsLayout = () => {
       </aside>
 
       <main className='flex-1 overflow-y-auto bg-background'>
-        <div className='mx-auto w-full max-w-[680px]  pb-5 px-5 py-4 md:px-6'>
+        <div className='mx-auto w-full max-w-[680px] pb-5 px-5 py-4 md:px-6 mt-6'>
           <Outlet />
         </div>
       </main>

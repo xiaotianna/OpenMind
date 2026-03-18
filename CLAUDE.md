@@ -57,6 +57,11 @@
    - 不需要包裹额外 DOM 元素时，使用 `<>` 或 `<React.Fragment>` 替代空 div
    - 避免不必要的 div 包装
 
+4. **路径别名规范**
+   - 使用 `@/` 替代相对路径 `../../`
+   - 项目已配置 `@` 指向 `src` 目录
+   - 示例：`import { ConfigTitle } from '@/components/config/config-title'`
+
 ### 文件组织规范
 
 #### 目录命名

@@ -1,3 +1,11 @@
+import { ConfigTitle } from '@/components/config/config-title';
+
 export default function SettingsPersonalizationPage() {
-  return <div className="text-sm text-muted-foreground">个性化页面占位</div>
+  return (
+    <>
+      <section>
+        <ConfigTitle>个性化</ConfigTitle>
+      </section>
+    </>
+  )
 }

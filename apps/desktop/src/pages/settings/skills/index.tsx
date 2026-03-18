@@ -1,3 +1,11 @@
+import { ConfigTitle } from '@/components/config/config-title';
+
 export default function SettingsSkillsPage() {
-  return <div className="text-sm text-muted-foreground">Skills 页面占位</div>
+  return (
+    <>
+      <section>
+        <ConfigTitle>Skills</ConfigTitle>
+      </section>
+    </>
+  )
 }

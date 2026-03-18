@@ -28,21 +28,20 @@ export default function SettingsGeneralPage() {
 
   return (
     <>
-      <h1 className="text-2xl font-semibold leading-none tracking-tight mb-6 mt-4">General</h1>
-
-      <div className="mt-2.5 space-y-2.5">
+      <section>
+        <ConfigTitle>通用</ConfigTitle>
         <SettingsCard>
           <SettingsRow
-            title="Default open destination"
-            description="Where files and folders open by default"
-            titleClassName="text-[14px]"
-            descriptionClassName="text-[13px]"
+            title='默认打开位置'
+            description='文件和文件夹的默认打开位置'
+            titleClassName='text-[14px]'
+            descriptionClassName='text-[13px]'
             control={
               <Button
-                variant="secondary"
-                className="h-7 w-full justify-start gap-2 rounded-full px-3 text-[12px] md:w-[212px]"
+                variant='secondary'
+                className='h-7 w-full justify-start gap-2 rounded-full px-3 text-[12px] md:w-[212px]'
               >
-                <span className="inline-grid size-5 place-items-center rounded-full bg-black text-[10px] font-semibold text-white">
+                <span className='inline-grid size-5 place-items-center rounded-full bg-black text-[10px] font-semibold text-white'>
                   C
                 </span>
                 Cursor
@@ -50,8 +49,8 @@ export default function SettingsGeneralPage() {
             }
           />
           <SettingsRow
-            title="Language"
-            description="Language for the app UI"
+            title='语言'
+            description='应用界面语言'
             control={
               <PillSelect
                 value={language}
@@ -61,211 +60,211 @@ export default function SettingsGeneralPage() {
             }
           />
           <SettingsRow
-            title="Thread detail"
-            description="Choose how much command output to show in threads"
+            title='对话详情'
+            description='选择在对话中显示多少命令输出'
             control={
               <PillSelect
                 value={threadDetail}
                 onValueChange={setThreadDetail}
                 items={[
-                  { value: 'steps-with-code', label: 'Steps with code commands' },
+                  { value: 'steps-with-code', label: '带代码命令的步骤' }
                 ]}
-                widthClassName="w-full md:min-w-[248px]"
+                widthClassName='w-full md:min-w-[248px]'
               />
             }
           />
           <SettingsRow
-            title="Prevent sleep while running"
-            description="Keep your computer awake while Codex is running a thread."
+            title='运行时阻止休眠'
+            description='在运行对话时保持电脑处于唤醒状态'
             control={
               <Switch
                 checked={preventSleep}
                 onCheckedChange={setPreventSleep}
-                className="h-5 w-8 data-[state=checked]:bg-[#0A84FF]"
+                className='h-5 w-8 data-[state=checked]:bg-[#0A84FF]'
               />
             }
           />
           <SettingsRow
-            title="Require Cmd + Enter to send long prompts"
-            description="When enabled, multiline prompts require Cmd + Enter to send."
+            title='需要 Cmd + Enter 发送长提示词'
+            description='启用后，多行提示词需要按 Cmd + Enter 发送'
             control={
               <Switch
                 checked={requireMetaEnter}
                 onCheckedChange={setRequireMetaEnter}
-                className="h-5 w-8 data-[state=checked]:bg-[#0A84FF]"
+                className='h-5 w-8 data-[state=checked]:bg-[#0A84FF]'
               />
             }
           />
           <SettingsRow
-            title="Follow-up behavior"
-            description="Queue follow-ups while Codex runs or steer the current run. Press Shift+Cmd+Enter to do the opposite for one message."
+            title='后续行为'
+            description='在运行时队列后续消息或引导当前运行。按 Shift+Cmd+Enter 可对单条消息执行相反操作'
             noBorder
             control={
               <ToggleGroup
-                type="single"
+                type='single'
                 value={followUpMode}
                 onValueChange={(value) => {
                   if (value) setFollowUpMode(value as FollowUpMode)
                 }}
-                className="rounded-full bg-muted/30 p-0.5"
+                className='rounded-full bg-muted/30 p-0.5'
               >
                 <ToggleGroupItem
-                  value="queue"
-                  className="h-6 rounded-full px-2.5 text-[12px] first:rounded-full last:rounded-full data-[state=on]:bg-muted"
+                  value='queue'
+                  className='h-6 rounded-full px-2.5 text-[12px] first:rounded-full last:rounded-full data-[state=on]:bg-muted'
                 >
-                  Queue
+                  队列
                 </ToggleGroupItem>
                 <ToggleGroupItem
-                  value="steer"
-                  className="h-6 rounded-full px-2.5 text-[12px] first:rounded-full last:rounded-full data-[state=on]:bg-muted"
+                  value='steer'
+                  className='h-6 rounded-full px-2.5 text-[12px] first:rounded-full last:rounded-full data-[state=on]:bg-muted'
                 >
-                  Steer
+                  引导
                 </ToggleGroupItem>
               </ToggleGroup>
             }
           />
         </SettingsCard>
+      </section>
 
-        <section>
-          <ConfigTitle>Appearance</ConfigTitle>
-          <SettingsCard>
-            <SettingsRow
-              title="Theme"
-              description="Use light, dark, or match your system"
-              control={
-                <ToggleGroup
-                  type="single"
-                  value={themeMode}
-                  onValueChange={(value) => {
-                    if (value) setThemeMode(value as ThemeMode)
-                  }}
-                  className="rounded-full bg-muted/30 p-0.5"
+      <section>
+        <ConfigTitle>外观</ConfigTitle>
+        <SettingsCard>
+          <SettingsRow
+            title='主题'
+            description='使用浅色、深色或跟随系统'
+            control={
+              <ToggleGroup
+                type='single'
+                value={themeMode}
+                onValueChange={(value) => {
+                  if (value) setThemeMode(value as ThemeMode)
+                }}
+                className='rounded-full bg-muted/30 p-0.5'
               >
                 <ToggleGroupItem
-                  value="light"
-                  className="h-6 rounded-full px-2.5 text-[12px] first:rounded-full last:rounded-full data-[state=on]:bg-muted"
+                  value='light'
+                  className='h-6 rounded-full px-2.5 text-[12px] first:rounded-full last:rounded-full data-[state=on]:bg-muted'
                 >
-                    <Sun className="h-3 w-3" />
-                    Light
-                  </ToggleGroupItem>
-                  <ToggleGroupItem
-                    value="dark"
-                    className="h-6 rounded-full px-2.5 text-[12px] first:rounded-full last:rounded-full data-[state=on]:bg-muted"
-                  >
-                    <Moon className="h-3 w-3" />
-                    Dark
-                  </ToggleGroupItem>
-                  <ToggleGroupItem
-                    value="system"
-                    className="h-6 rounded-full px-2.5 text-[12px] first:rounded-full last:rounded-full data-[state=on]:bg-muted"
-                  >
-                    <Laptop className="h-3 w-3" />
-                    System
-                  </ToggleGroupItem>
-                </ToggleGroup>
-              }
-            />
-            <SettingsRow
-              title="Use opaque window background"
-              description="Make windows use a solid background rather than system translucency"
-              control={
-                <Switch
-                  checked={opaqueWindow}
-                  onCheckedChange={setOpaqueWindow}
-                  className="h-5 w-8 data-[state=checked]:bg-[#0A84FF]"
+                  <Sun className='h-3 w-3' />
+                  浅色
+                </ToggleGroupItem>
+                <ToggleGroupItem
+                  value='dark'
+                  className='h-6 rounded-full px-2.5 text-[12px] first:rounded-full last:rounded-full data-[state=on]:bg-muted'
+                >
+                  <Moon className='h-3 w-3' />
+                  深色
+                </ToggleGroupItem>
+                <ToggleGroupItem
+                  value='system'
+                  className='h-6 rounded-full px-2.5 text-[12px] first:rounded-full last:rounded-full data-[state=on]:bg-muted'
+                >
+                  <Laptop className='h-3 w-3' />
+                  跟随系统
+                </ToggleGroupItem>
+              </ToggleGroup>
+            }
+          />
+          <SettingsRow
+            title='使用不透明窗口背景'
+            description='使用实色背景而非系统半透明效果'
+            control={
+              <Switch
+                checked={opaqueWindow}
+                onCheckedChange={setOpaqueWindow}
+                className='h-5 w-8 data-[state=checked]:bg-[#0A84FF]'
+              />
+            }
+          />
+          <SettingsRow
+            title='使用指针光标'
+            description='悬停在交互元素上时将光标改为指针'
+            control={
+              <Switch
+                checked={usePointerCursor}
+                onCheckedChange={setUsePointerCursor}
+                className='h-5 w-8 data-[state=checked]:bg-[#0A84FF]'
+              />
+            }
+          />
+          <SettingsRow
+            title='无衬线字体'
+            description='调整界面使用的字体'
+            control={
+              <div className='grid w-full grid-cols-[66px_auto_1fr] gap-1.5 md:w-[318px]'>
+                <Input
+                  value='13'
+                  readOnly
+                  className='h-7 text-center text-[12px]'
                 />
-              }
-            />
-            <SettingsRow
-              title="Use pointer cursors"
-              description="Change the cursor to a pointer when hovering over interactive elements"
-              control={
-                <Switch
-                  checked={usePointerCursor}
-                  onCheckedChange={setUsePointerCursor}
-                  className="h-5 w-8 data-[state=checked]:bg-[#0A84FF]"
+                <div className='flex items-center text-[12px] text-muted-foreground'>
+                  px
+                </div>
+                <Input
+                  value='-apple-system, BlinkMacSystemFont, "Segoe UI"'
+                  readOnly
+                  className='h-7 text-[12px]'
                 />
-              }
-            />
-            <SettingsRow
-              title="Sans font family"
-              description="Adjust the font used for the Codex UI"
-              control={
-                <div className="grid w-full grid-cols-[66px_auto_1fr] gap-1.5 md:w-[318px]">
-                  <Input
-                    value="13"
-                    readOnly
-                    className="h-7 text-center text-[12px]"
-                  />
-                  <div className="flex items-center text-[12px] text-muted-foreground">
-                    px
-                  </div>
-                  <Input
-                    value='-apple-system, BlinkMacSystemFont, "Segoe UI"'
-                    readOnly
-                    className="h-7 text-[12px]"
-                  />
+              </div>
+            }
+          />
+          <SettingsRow
+            title='代码字体'
+            description='调整对话和差异中代码使用的字体和大小'
+            noBorder
+            control={
+              <div className='grid w-full grid-cols-[66px_auto_1fr] gap-1.5 md:w-[318px]'>
+                <Input
+                  value='13'
+                  readOnly
+                  className='h-7 text-center text-[12px]'
+                />
+                <div className='flex items-center text-[12px] text-muted-foreground'>
+                  px
                 </div>
-              }
-            />
-            <SettingsRow
-              title="Code font"
-              description="Adjust font and size used for code across chats and diffs"
-              noBorder
-              control={
-                <div className="grid w-full grid-cols-[66px_auto_1fr] gap-1.5 md:w-[318px]">
-                  <Input
-                    value="13"
-                    readOnly
-                    className="h-7 text-center text-[12px]"
-                  />
-                  <div className="flex items-center text-[12px] text-muted-foreground">
-                    px
-                  </div>
-                  <Input
-                    value='ui-monospace, "SFMono-Regular", Menlo, Consolas'
-                    readOnly
-                    className="h-7 text-[12px]"
-                  />
-                </div>
-              }
-            />
-          </SettingsCard>
-        </section>
+                <Input
+                  value='ui-monospace, "SFMono-Regular", Menlo, Consolas'
+                  readOnly
+                  className='h-7 text-[12px]'
+                />
+              </div>
+            }
+          />
+        </SettingsCard>
+      </section>
 
-        <section>
-          <ConfigTitle>Notifications</ConfigTitle>
-          <SettingsCard>
-            <SettingsRow
-              title="Turn completion notifications"
-              description="Set when Codex alerts you that it is finished"
-              control={
-                <PillSelect
-                  value={completionNotify}
-                  onValueChange={setCompletionNotify}
-                  items={[{ value: 'unfocused', label: 'Only when unfocused' }]}
+      <section>
+        <ConfigTitle>通知</ConfigTitle>
+        <SettingsCard>
+          <SettingsRow
+            title='完成通知'
+            description='设置完成任务时提醒你的时机'
+            control={
+              <PillSelect
+                value={completionNotify}
+                onValueChange={setCompletionNotify}
+                items={[{ value: 'unfocused', label: '仅在未聚焦时' }]}
+              />
+            }
+          />
+          <SettingsRow
+            title='启用权限通知'
+            description='需要通知权限时显示提醒'
+            noBorder
+            control={
+              <div className='flex justify-end'>
+                <Checkbox
+                  checked={permissionNotifications}
+                  onCheckedChange={(value) =>
+                    setPermissionNotifications(value === true)
+                  }
+                  className='size-4 rounded border-border data-[state=checked]:bg-muted data-[state=checked]:text-foreground'
                 />
-              }
-            />
-            <SettingsRow
-              title="Enable permission notifications"
-              description="Show alerts when notification permissions are required"
-              noBorder
-              control={
-                <div className="flex justify-end">
-                  <Checkbox
-                    checked={permissionNotifications}
-                    onCheckedChange={(value) =>
-                      setPermissionNotifications(value === true)
-                    }
-                    className="size-4 rounded border-border data-[state=checked]:bg-muted data-[state=checked]:text-foreground"
-                  />
-                </div>
-              }
-            />
-          </SettingsCard>
-        </section>
-      </div>
+              </div>
+            }
+          />
+        </SettingsCard>
+      </section>
     </>
   )
 }

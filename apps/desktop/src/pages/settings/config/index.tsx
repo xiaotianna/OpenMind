@@ -1,11 +1,18 @@
 import { useEffect } from "react"
 
+import { ConfigTitle } from '@/components/config/config-title'
 import { PROTOCOL_ADAPTERS } from '@/utils/adapter'
 
 export default function SettingsConfigPage() {
   useEffect(() => {
     console.log(PROTOCOL_ADAPTERS);
-    
+
   }, [])
-  return <div className="text-sm text-muted-foreground">配置页面占位,memory</div>
+  return (
+    <>
+      <section>
+        <ConfigTitle>配置</ConfigTitle>
+      </section>
+    </>
+  )
 }
