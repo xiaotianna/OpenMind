@@ -15,6 +15,7 @@ import {
 import { Download, Plus, Star, Trash2 } from 'lucide-react'
 import { ConfigTitle } from '@/components/config/config-title'
 import { SettingsCard } from '@/components/config/settings-card'
+import { SettingsHeader } from '@/components/config/settings-header'
 import { Textarea } from '@/components/ui/textarea'
 import { Input } from '@/components/ui/input'
 
@@ -144,32 +145,22 @@ export default function SettingsPromptsPage() {
   return (
     <>
       <section>
-        <div className='mb-6 flex items-start justify-between gap-4'>
-          <div>
-            <ConfigTitle>系统提示词</ConfigTitle>
-            <p className='text-sm text-muted-foreground -mt-2'>
-              管理 Chat 模式的系统提示词
-            </p>
-          </div>
-        <div className='flex items-center gap-2 shrink-0 mt-6'>
-          <Button
-            variant='outline'
-            size='sm'
-            onClick={handleDownload}
-          >
-            <Download className='h-3.5 w-3.5 mr-1.5' />
-            下载
-          </Button>
-          <Button
-            variant='default'
-            size='sm'
-            onClick={handleCreateNew}
-          >
-            <Plus className='h-3.5 w-3.5 mr-1.5' />
-            新建
-          </Button>
-        </div>
-        </div>
+        <SettingsHeader
+          title='系统提示词'
+          description='管理 Chat 模式的系统提示词'
+          actions={
+            <>
+              <Button variant='outline' size='sm' onClick={handleDownload}>
+                <Download className='h-3.5 w-3.5 mr-1.5' />
+                下载
+              </Button>
+              <Button variant='default' size='sm' onClick={handleCreateNew}>
+                <Plus className='h-3.5 w-3.5 mr-1.5' />
+                新建
+              </Button>
+            </>
+          }
+        />
       </section>
 
       <div className='space-y-6'>

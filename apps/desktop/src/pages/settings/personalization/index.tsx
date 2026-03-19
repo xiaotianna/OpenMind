@@ -70,7 +70,7 @@ export default function SettingsPersonalizationPage() {
             oldCode={oldCode}
             newCode={newCode}
             mode='split'
-            className='w-full'
+            className='w-full p-3'
             language='js'
           />
           <SettingsRow

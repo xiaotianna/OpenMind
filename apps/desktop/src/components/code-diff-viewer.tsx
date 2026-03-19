@@ -1,7 +1,7 @@
 import * as Diff from 'diff'
 import hljs from 'highlight.js'
 import { cn } from '@/lib/utils'
-import 'highlight.js/styles/intellij-light.css'
+import 'highlight.js/styles/github-dark.min.css'
 
 interface CodeDiffViewerProps {
   oldCode: string

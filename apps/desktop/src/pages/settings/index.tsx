@@ -4,7 +4,6 @@ import {
   Brain,
   GitBranch,
   Palette,
-  Settings2,
   SlidersHorizontal,
   Wand2,
   Wrench
@@ -20,7 +19,6 @@ const menuItems = [
   { icon: SlidersHorizontal, label: '常规', to: 'general' },
   { icon: Palette, label: '个性化', to: 'personalization' },
   { icon: Brain, label: '模型', to: 'models' },
-  { icon: Settings2, label: '配置', to: 'config' },
   { icon: BookOpen, label: '提示词', to: 'prompts' },
   { icon: Wrench, label: '工具', to: 'tools' },
   { icon: MCP, label: 'MCP 服务器', to: 'mcp-servers' },

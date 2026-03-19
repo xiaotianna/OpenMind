@@ -8,13 +8,13 @@ const Chat = lazy(() => import('@/pages/layout/chat'))
 // settings
 const SettingsLayout = lazy(() => import('@/pages/settings'))
 const SettingsGeneral = lazy(() => import('@/pages/settings/general'))
-const SettingsConfig = lazy(() => import('@/pages/settings/config'))
 const SettingsPersonalization = lazy(
   () => import('@/pages/settings/personalization')
 )
 const SettingsMcpServers = lazy(() => import('@/pages/settings/mcp-servers'))
 const SettingsGit = lazy(() => import('@/pages/settings/git'))
 const SettingsModels = lazy(() => import('@/pages/settings/models'))
+const NewModel = lazy(() => import('@/pages/settings/models/new'))
 const SettingsPrompts = lazy(() => import('@/pages/settings/prompts'))
 const SettingsTools = lazy(() => import('@/pages/settings/tools'))
 const SettingsSkills = lazy(() => import('@/pages/settings/skills'))
@@ -51,10 +51,6 @@ const router = createBrowserRouter([
         element: <SettingsGeneral />
       },
       {
-        path: 'config',
-        element: <SettingsConfig />
-      },
-      {
         path: 'personalization',
         element: <SettingsPersonalization />
       },
@@ -69,6 +65,10 @@ const router = createBrowserRouter([
       {
         path: 'models',
         element: <SettingsModels />
+      },
+      {
+        path: 'models/new',
+        element: <NewModel />
       },
       {
         path: 'prompts',
