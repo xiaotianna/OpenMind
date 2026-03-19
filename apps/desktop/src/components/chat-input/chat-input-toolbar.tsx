@@ -11,7 +11,7 @@ type ChatInputToolbarProps = {
 
 export function ChatInputToolbar({ canSubmit }: ChatInputToolbarProps) {
   const projectOptions = [
-    "AI Agent Desktop",
+    "OpenMind",
     "Project A",
     "Project B",
     "Project C",

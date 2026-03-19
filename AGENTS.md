@@ -1,10 +1,10 @@
-# AI Agent Desktop - Codex 协作规范
+# OpenMind - Codex 协作规范
 
 本文件用于指导 Codex 在本仓库中的行为。目标是与 `CLAUDE.md` 保持一致，并补充可执行约束。
 
 ## 1. 项目概述
 
-- 项目名称：AI Agent Desktop
+- 项目名称：OpenMind
 - 技术栈：Electron + React + TypeScript（Monorepo）
 - 目标：构建 AI Agent 桌面客户端，支持对话、任务处理与本地能力集成
 

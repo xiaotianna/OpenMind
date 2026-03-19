@@ -2,7 +2,7 @@
 
 ## 项目概述
 
-- **项目名称**: AI Agent Desktop
+- **项目名称**: OpenMind
 - **项目类型**: 桌面应用程序
 - **技术栈**: Electron + React + TypeScript
 - **核心功能**: AI Agent 桌面客户端，提供对话、任务处理等功能
