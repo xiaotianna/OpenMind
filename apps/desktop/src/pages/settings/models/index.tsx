@@ -163,8 +163,8 @@ export default function SettingsModelsPage() {
     <>
       <section>
         <SettingsHeader
-          title='渠道管理'
-          description='管理 AI 供应商连接，配置 API Key 和可用模型。Anthropic 渠道同时可用于 Agent 模式'
+          title='模型管理'
+          description='管理 AI 供应商连接，配置 API Key 和可用模型。'
           actions={
             <Button variant='default' size='sm' onClick={() => navigate('/settings/models/new')}>
               <Plus className='h-3.5 w-3.5 mr-1.5' />
