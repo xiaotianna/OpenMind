@@ -7,9 +7,9 @@ import {
   Code2,
   Search
 } from 'lucide-react'
-import { ConfigTitle } from '@/components/config/config-title'
-import { SettingsCard } from '@/components/config/settings-card'
-import { SettingsRow } from '@/components/config/settings-row'
+import { ConfigTitle } from '@/components/setting/config-title'
+import { SettingsCard } from '@/components/setting/settings-card'
+import { SettingsRow } from '@/components/setting/settings-row'
 import { Switch } from '@/components/ui/switch'
 
 interface Tool {

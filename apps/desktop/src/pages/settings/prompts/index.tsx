@@ -13,10 +13,10 @@ import {
   AlertDialogTrigger
 } from '@/components/ui/alert-dialog'
 import { Download, Plus, Star, Trash2 } from 'lucide-react'
-import { ConfigTitle } from '@/components/config/config-title'
-import { SettingsCard } from '@/components/config/settings-card'
-import { SettingsHeader } from '@/components/config/settings-header'
-import { SettingsRow } from '@/components/config/settings-row'
+import { ConfigTitle } from '@/components/setting/config-title'
+import { SettingsCard } from '@/components/setting/settings-card'
+import { SettingsHeader } from '@/components/setting/settings-header'
+import { SettingsRow } from '@/components/setting/settings-row'
 import { Textarea } from '@/components/ui/textarea'
 import { Input } from '@/components/ui/input'
 

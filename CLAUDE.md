@@ -79,35 +79,69 @@
 #### 目录结构
 
 ```
-src/
+apps/desktop/src/
 ├── components/           # React 组件（非 UI 库）
-│   ├── chat-input/      # 聊天输入组件
+│   ├── chat-input/       # 聊天输入组件
+│   │   ├── chat-input.tsx
+│   │   ├── chat-input-editor.tsx
+│   │   ├── chat-input-toolbar.tsx
+│   │   └── toolbar/      # 工具栏子组件
+│   │       ├── send-button.tsx
+│   │       ├── attachment.tsx
+│   │       ├── model-selector.tsx
+│   │       └── project-selector.tsx
+│   ├── setting/          # 设置页面通用组件
+│   │   ├── config-title.tsx
+│   │   ├── sub-config-title.tsx
+│   │   ├── settings-card.tsx
+│   │   ├── settings-header.tsx
+│   │   ├── settings-row.tsx
+│   │   └── pill-select.tsx
+│   ├── ui/               # UI 组件库（来自 shadcn）
 │   ├── sidebar.tsx
 │   ├── drag-handle.tsx
-│   └── dot-pattern.tsx
-├── pages/               # 页面组件
-│   ├── layout/          # 布局页面
-│   │   ├── chat/       # 聊天页面
+│   ├── dot-pattern.tsx
+│   ├── back-button.tsx
+│   ├── loading.tsx
+│   ├── error-boundary.tsx
+│   └── code-diff-viewer.tsx
+├── pages/                # 页面组件
+│   ├── layout/           # 布局页面
+│   │   ├── chat/        # 聊天页面
 │   │   └── index.tsx
-│   └── settings/        # 设置页面（嵌套路由）
-│       ├── general/
-│       ├── config/
-│       ├── personalization/
-│       ├── mcp-servers/
-│       ├── git/
-│       ├── environment/
-│       ├── worktree/
-├── hooks/               # 自定义 hooks
-│   ├── use-theme.ts
+│   └── settings/         # 设置页面（嵌套路由）
+│       ├── general/     # 通用设置
+│       ├── personalization/  # 个人化设置
+│       ├── models/      # 模型管理
+│       │   └── new/     # 新建模型页面
+│       ├── mcps/        # MCP 服务器设置
+│       ├── skills/      # 技能设置
+│       ├── prompts/     # 提示词设置
+│       ├── tools/       # 工具设置
+│       └── git/         # Git 设置
+├── hooks/                # 自定义 hooks
+│   ├── use-theme.tsx
 │   ├── use-mobile.ts
 │   └── use-toast.ts
-├── lib/                 # 工具库
+├── config/               # 配置相关
+│   └── model/            # 模型配置
+│       ├── index.ts
+│       ├── api-key-resolver.ts
+│       └── providers/   # 模型提供者
+│           ├── openai-provider.ts
+│           ├── anthropic-provider.ts
+│           ├── google-provider.ts
+│           ├── qwen-provider.ts
+│           └── deepseek-provider.ts
+├── utils/                # 工具函数
+│   └── adapter.ts
+├── lib/                  # 工具库
 │   └── utils.ts
-├── styles/              # 样式文件
+├── styles/               # 样式文件
 │   └── globals.css
-├── router/              # 路由配置
+├── router/               # 路由配置
 │   └── index.tsx
-├── common/              # 通用常量和配置
+├── common/               # 通用常量和配置
 │   └── index.ts
 ├── App.tsx
 └── main.tsx
@@ -164,6 +198,19 @@ src/
 - 列表项使用圆角卡片样式（rounded-lg），hover 时使用 secondary 背景色
 - 保持间距一致，使用 px-2/3/4 和 py-1/2/3 等标准间距
 - 图标和文字保持垂直居中，使用 gap-2/3 控制间距
+
+### 设置页面组件规范
+
+- **所有设置页面必须使用 `@/components/setting/` 下的组件**，以保持 UI 统一
+- 提供的组件包括：
+  - `ConfigTitle`: 页面标题
+  - `SubConfigTitle`: 子区域标题
+  - `SettingsCard`: 卡片容器
+  - `SettingsRow`: 行项目，支持 `title`、`description`、`control`、`icon`、`noBorder` 属性
+  - `PillSelect`: 药丸选择器
+  - `SettingsHeader`: 设置页头部
+- `SettingsRow` 的 `icon` 属性支持自定义 ReactNode，可用于显示图标或图片
+- 组件路径：`import { SettingsRow } from '@/components/setting/settings-row'`
 
 ## 功能迭代记录
 

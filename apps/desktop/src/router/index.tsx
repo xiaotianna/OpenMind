@@ -11,7 +11,7 @@ const SettingsGeneral = lazy(() => import('@/pages/settings/general'))
 const SettingsPersonalization = lazy(
   () => import('@/pages/settings/personalization')
 )
-const SettingsMcpServers = lazy(() => import('@/pages/settings/mcp-servers'))
+const SettingsMcpServers = lazy(() => import('@/pages/settings/mcps'))
 const SettingsGit = lazy(() => import('@/pages/settings/git'))
 const SettingsModels = lazy(() => import('@/pages/settings/models'))
 const NewModel = lazy(() => import('@/pages/settings/models/new'))
@@ -55,7 +55,7 @@ const router = createBrowserRouter([
         element: <SettingsPersonalization />
       },
       {
-        path: 'mcp-servers',
+        path: 'mcps',
         element: <SettingsMcpServers />
       },
       {

@@ -1,4 +1,4 @@
-import { ConfigTitle } from '@/components/config/config-title';
+import { ConfigTitle } from '@/components/setting/config-title';
 
 export default function SettingsSkillsPage() {
   return (

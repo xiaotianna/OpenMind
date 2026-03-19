@@ -21,7 +21,7 @@ const menuItems = [
   { icon: Brain, label: '模型', to: 'models' },
   { icon: BookOpen, label: '提示词', to: 'prompts' },
   { icon: Wrench, label: '工具', to: 'tools' },
-  { icon: MCP, label: 'MCP 服务器', to: 'mcp-servers' },
+  { icon: MCP, label: 'MCP 服务器', to: 'mcps' },
   { icon: Wand2, label: 'Skills', to: 'skills' },
   { icon: GitBranch, label: 'Git', to: 'git' },
 ]

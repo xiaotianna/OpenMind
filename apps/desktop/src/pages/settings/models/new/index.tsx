@@ -11,8 +11,8 @@ import {
   SelectValue
 } from '@/components/ui/select'
 import { BackButton } from '@/components/back-button'
-import { SettingsHeader } from '@/components/config/settings-header'
-import { ConfigTitle } from '@/components/config/config-title'
+import { SettingsHeader } from '@/components/setting/settings-header'
+import { ConfigTitle } from '@/components/setting/config-title'
 
 interface ModelEntry {
   id: string
