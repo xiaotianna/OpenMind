@@ -16,6 +16,7 @@ import { Download, Plus, Star, Trash2 } from 'lucide-react'
 import { ConfigTitle } from '@/components/config/config-title'
 import { SettingsCard } from '@/components/config/settings-card'
 import { SettingsHeader } from '@/components/config/settings-header'
+import { SettingsRow } from '@/components/config/settings-row'
 import { Textarea } from '@/components/ui/textarea'
 import { Input } from '@/components/ui/input'
 
@@ -267,20 +268,16 @@ export default function SettingsPromptsPage() {
         <section>
           <ConfigTitle>增强选项</ConfigTitle>
           <SettingsCard>
-            <div className='px-3.5 py-3 flex items-center justify-between'>
-              <div className='flex flex-col gap-0.5'>
-                <p className='text-[13px] font-medium text-foreground'>
-                  追加日期时间和用户名
-                </p>
-                <p className='text-[12px] text-muted-foreground'>
-                  在提示词末尾自动追加当前日期时间和用户名
-                </p>
-              </div>
-              <Switch
-                checked={appendDateTime}
-                onCheckedChange={setAppendDateTime}
-              />
-            </div>
+            <SettingsRow
+              title='追加日期时间和用户名'
+              description='在提示词末尾自动追加当前日期时间和用户名'
+              control={
+                <Switch
+                  checked={appendDateTime}
+                  onCheckedChange={setAppendDateTime}
+                />
+              }
+            />
           </SettingsCard>
         </section>
       </div>

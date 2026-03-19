@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils'
 import type { ReactNode } from 'react'
 
 interface SettingsRowProps {
-  title: string
+  title: string | ReactNode
   description: string
   control: ReactNode
   noBorder?: boolean
@@ -28,7 +28,7 @@ export function SettingsRow({
       <div className="min-w-0 flex flex-col gap-1">
         <p
           className={cn(
-            'text-[13px] font-medium leading-5 text-foreground',
+            'text-sm font-medium leading-5 text-foreground',
             titleClassName,
           )}
         >
@@ -36,7 +36,7 @@ export function SettingsRow({
         </p>
         <p
           className={cn(
-            'mt-0.5 text-[12px] leading-[1.1rem] text-muted-foreground',
+            'mt-0.5 text-[13px] leading-[1.1rem] text-muted-foreground',
             descriptionClassName,
           )}
         >

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Eye, EyeOff, Plus, Zap, Download, ArrowLeft, Save } from 'lucide-react'
+import { Eye, EyeOff, Plus, Zap, Download, Save } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Switch } from '@/components/ui/switch'
@@ -10,7 +10,7 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select'
-import { useNavigate } from 'react-router-dom'
+import { BackButton } from '@/components/back-button'
 import { SettingsHeader } from '@/components/config/settings-header'
 import { ConfigTitle } from '@/components/config/config-title'
 
@@ -245,7 +245,6 @@ function ChannelModelList({ models, onChange }: ChannelModelListProps) {
 }
 
 export default function NewModelPage() {
-  const navigate = useNavigate()
   const [formData, setFormData] = useState<ChannelFormData>({
     channelName: '',
     provider: 'anthropic',
@@ -259,20 +258,12 @@ export default function NewModelPage() {
 
   return (
     <>
+    <BackButton />
       <SettingsHeader
         title='新增模型'
         description='配置新的 AI 模型供应商和 API Key'
         actions={
           <div className='flex items-center gap-2'>
-            <Button
-              variant='ghost'
-              size='sm'
-              className='gap-1.5 text-muted-foreground'
-              onClick={() => navigate('/settings/models')}
-            >
-              <ArrowLeft className='h-3.5 w-3.5 mr-1.5' />
-              返回
-            </Button>
             <Button
               variant='outline'
               size='sm'

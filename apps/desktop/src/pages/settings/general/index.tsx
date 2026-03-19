@@ -34,8 +34,6 @@ export default function SettingsGeneralPage() {
           <SettingsRow
             title='默认打开位置'
             description='文件和文件夹的默认打开位置'
-            titleClassName='text-[14px]'
-            descriptionClassName='text-[13px]'
             control={
               <Button
                 variant='secondary'
