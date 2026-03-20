@@ -8,7 +8,7 @@ import { SettingsRow } from '@/components/setting/settings-row'
 import { ConfigTitle } from '@/components/setting/config-title'
 
 export default function SettingsGitPage() {
-  const [branchPrefix, setBranchPrefix] = useState('codex/')
+  const [branchPrefix, setBranchPrefix] = useState('OpenMind/')
   const [forceWithLease, setForceWithLease] = useState(false)
   const [draftPR, setDraftPR] = useState(false)
   const [commitInstructions, setCommitInstructions] = useState('')
@@ -24,7 +24,7 @@ export default function SettingsGitPage() {
         <SettingsCard>
           <SettingsRow
             title='分支前缀'
-            description='在 Codex 中创建新分支时使用的前缀'
+            description='在 OpenMind 中创建新分支时使用的前缀'
             control={
               <Input
                 value={branchPrefix}
@@ -35,7 +35,7 @@ export default function SettingsGitPage() {
           />
           <SettingsRow
             title='始终强制推送'
-            description='从 Codex 推送时使用 --force-with-lease 参数'
+            description='从 OpenMind 推送时使用 --force-with-lease 参数'
             control={
               <Switch
                 checked={forceWithLease}
@@ -45,7 +45,7 @@ export default function SettingsGitPage() {
           />
           <SettingsRow
             title='Create draft pull requests'
-            description='Use draft pull requests by default when creating PRs from Codex'
+            description='Use draft pull requests by default when creating PRs from OpenMind'
             control={
               <Switch
                 checked={draftPR}
@@ -87,7 +87,7 @@ export default function SettingsGitPage() {
         <SettingsCard>
           <div className='px-3.5 py-3 space-y-3'>
             <p className='text-[13px] text-muted-foreground'>
-              已附加到由 Codex 创建的拉取请求正文中
+              已附加到由 OpenMind 创建的拉取请求正文中
             </p>
             <Textarea
               placeholder='添加拉取请求指引...'

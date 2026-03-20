@@ -237,7 +237,7 @@ function ModelSelectorDialog({
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
-        className="max-w-[480px] border-none p-0 sm:max-w-[540px]"
+        className="max-w-[480px] p-0 sm:max-w-[540px]"
         showCloseButton={false}
       >
         <div className="flex flex-col p-3">

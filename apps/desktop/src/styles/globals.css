@@ -125,6 +125,15 @@
   height: 8px;
 }
 
+/* 隐藏滚动条但保持滚动功能 */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 :root {
   --diff-added-bg: oklch(0.94 0.08 145);
   --diff-added-text: oklch(0.35 0.12 145);

@@ -71,7 +71,7 @@ export default function SettingsMcpServersPage() {
       <section>
         <SettingsHeader
           title='MCP 服务器'
-          description='连接外部工具和数据源。'
+          description='连接外部工具和数据源'
           actions={
             <Button
               variant='secondary'

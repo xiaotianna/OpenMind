@@ -25,7 +25,7 @@ export function SettingsRow({
   return (
     <div
       className={cn(
-        'grid grid-cols-1 gap-1 px-3.5 py-3 min-h-[56px] md:grid-cols-[minmax(0,1fr)_auto] md:items-center md:gap-3',
+        'grid grid-cols-1 gap-1 px-3.5 py-3 min-h-[56px] md:grid-cols-[minmax(0,1fr)_auto] md:items-center md:gap-3 group',
         !noBorder && 'border-b border-border/60',
         className
       )}

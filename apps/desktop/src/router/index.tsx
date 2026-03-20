@@ -19,6 +19,7 @@ const NewModel = lazy(() => import('@/pages/settings/models/new'))
 const SettingsPrompts = lazy(() => import('@/pages/settings/prompts'))
 const SettingsTools = lazy(() => import('@/pages/settings/tools'))
 const SettingsSkills = lazy(() => import('@/pages/settings/skills'))
+const SettingsMemory = lazy(() => import('@/pages/settings/memory'))
 
 const router = createBrowserRouter([
   {
@@ -86,6 +87,10 @@ const router = createBrowserRouter([
       {
         path: 'skills',
         element: <SettingsSkills />
+      },
+      {
+        path: 'memory',
+        element: <SettingsMemory />
       }
     ]
   },
