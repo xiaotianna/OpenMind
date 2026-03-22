@@ -269,34 +269,33 @@ export function SkillDetailDialog({
         <div className='bg-background w-full h-full overflow-hidden flex flex-col'>
           {/* Header */}
           <div className='mb-6'>
-            <div className='flex items-start justify-between'>
-              <div>
-                <h1 className='text-xl font-bold text-foreground flex items-center gap-2'>
-                  {skill.name}
-                  {!skill.enabled && (
-                    <span className='text-xs px-2 py-0.5 rounded-full bg-muted text-muted-foreground'>
-                      已禁用
-                    </span>
-                  )}
-                </h1>
-                <p className='mt-1 text-muted-foreground'>
-                  {skill.description}
-                </p>
-              </div>
+            <div className='flex items-center justify-between mb-2'>
+              <h1 className='text-lg font-bold text-foreground flex items-center gap-2'>
+                {skill.name}
+                {!skill.enabled && (
+                  <span className='text-xs px-2 py-0.5 rounded-full bg-muted text-muted-foreground'>
+                    已禁用
+                  </span>
+                )}
+              </h1>
               <Button
                 variant='ghost'
-                className='flex items-center gap-1.5 text-sm focus-visible:ring-[none] text-muted-foreground hover:text-foreground transition-colors'
+                size='sm'
+                className='flex items-center gap-1.5 text-xs focus-visible:ring-[none] text-muted-foreground hover:text-foreground transition-colors'
               >
                 打开文件夹
-                <ExternalLink className='h-4 w-4' />
+                <ExternalLink className='h-3 w-3' />
               </Button>
             </div>
+            <p className='mt-1 text-sm text-muted-foreground'>
+              {skill.description}
+            </p>
           </div>
 
           {/* Example Prompt */}
           <div className='mb-6 rounded-lg bg-muted/50 p-4'>
             <div className='flex items-center justify-between mb-2'>
-              <span className='text-sm text-muted-foreground'>示例提示</span>
+              <span className='text-xs text-muted-foreground'>示例提示</span>
               <button
                 onClick={handleCopy}
                 className='p-1.5 rounded hover:bg-muted transition-colors'
@@ -305,7 +304,7 @@ export function SkillDetailDialog({
                 <Copy className='h-4 w-4 text-muted-foreground' />
               </button>
             </div>
-            <p className='font-mono text-sm text-foreground leading-relaxed'>
+            <p className='font-mono text-xs text-foreground leading-relaxed'>
               {examplePrompt}
             </p>
             {copied && (
