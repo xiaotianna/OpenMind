@@ -32,8 +32,8 @@ export default function SettingsGeneralPage() {
         <ConfigTitle>通用</ConfigTitle>
         <SettingsCard>
           <SettingsRow
-            title='默认打开位置'
-            description='文件和文件夹的默认打开位置'
+            title='默认打开目标'
+            description='默认打开文件和文件夹的位置'
             control={
               <Button
                 variant='secondary'

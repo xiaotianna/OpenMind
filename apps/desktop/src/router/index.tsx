@@ -5,6 +5,7 @@ import { createBrowserRouter } from 'react-router-dom'
 // layout
 const RootLayout = lazy(() => import('@/pages/layout'))
 const Chat = lazy(() => import('@/pages/layout/chat'))
+const ChatSession = lazy(() => import('@/pages/layout/chat/session'))
 // settings
 const SettingsLayout = lazy(() => import('@/pages/settings'))
 const SettingsGeneral = lazy(() => import('@/pages/settings/general'))
@@ -36,7 +37,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'chat/:sessionId',
-        element: <Chat />
+        element: <ChatSession />
       }
     ]
   },
